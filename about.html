@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="icon" type="image/x-icon" href="frakktur-icon.png">
+  <title>FRAKKTUR</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+    body {
+      font-family: 'Bebas Neue', cursive, sans-serif;
+    }
+
+    .landing-bg {
+      background-image: url('image1.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: absolute;
+      inset: 0;
+      filter: brightness(20%);
+      z-index: 0;
+    }
+
+    .hover-underline-animation {
+      display: inline-block;
+      position: relative;
+    }
+
+    .hover-underline-animation::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 1px;
+      bottom: 0;
+      left: 0;
+      background-color: #ffffff;
+      transition: transform 0.25s ease-out;
+    }
+
+    .hover-underline-animation:hover::after {
+      transform: scaleX(1);
+    }
+
+    .hover-underline-animation.center::after {
+      transform-origin: bottom center;
+    }
+
+    .hover-underline-animation.center:hover::after {
+      transform-origin: bottom center;
+    }
+
+    @keyframes fadeSlideIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-slide-in {
+      animation: fadeSlideIn 1s ease-out forwards;
+    }
+
+    .landing-content {
+      position: relative;
+      z-index: 10;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+    }
+  </style>
+</head>
+
+<body class="relative bg-black text-white overflow-x-hidden">
+
+  <!-- Landing Section -->
+  <section class="relative h-screen w-full overflow-hidden">
+
+    <!-- Carousel Indicators -->
+    <div id="carousel-indicators" class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+      <button aria-label="Slide 1" class="opacity-50"></button>
+      <button aria-label="Slide 2" class="opacity-50"></button>
+      <button aria-label="Slide 3" class="opacity-50"></button>
+    </div>
+
+    <!-- Background carousel container -->
+    <div class="absolute inset-0 z-0">
+      <div class="landing-bg brightness-[20%]" style="background-image: url('image1.png')"></div>
+      <div class="landing-bg brightness-[20%]" style="background-image: url('image2.jpg')"></div>
+      <div class="landing-bg brightness-[20%]" style="background-image: url('about-us-landing.jpg')"></div>
+    </div>
+
+    <!-- Content on top -->
+    <div class="relative z-10">
+      <!-- Navigation Bar -->
+      <header role="banner" class="fixed top-0 left-0 right-0 bg-black bg-opacity-90 z-30">
+        <div class="max-w-[1800px] mx-auto flex justify-between items-center px-6 py-4">
+          <div class="text-white uppercase tracking-widest text-3xl select-none">
+            <a href="index.html">FRAKKTUR</a>
+          </div>
+
+          <nav role="navigation" aria-label="Primary navigation"
+            class="hidden md:flex space-x-8 font-[inherit] tracking-widest text-lg">
+            <a href="index.html" class="text-white py-1 px-3 rounded-md hover-underline-animation center">Home</a>
+            <a href="shop.html" class="text-white py-1 px-3 rounded-md hover-underline-animation center">Shop</a>
+            <a href="about.html" class="text-white py-1 px-3 rounded-md hover-underline-animation center">About</a>
+            <a href="contact.html" class="text-white py-1 px-3 rounded-md hover-underline-animation center">Contact</a>
+          </nav>
+
+          <button type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu"
+            id="menu-button" class="md:hidden">
+            <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+
+        <nav id="mobile-menu"
+          class="max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out md:hidden bg-black bg-opacity-95 backdrop-blur-md border-t border-gray-800">
+          <div class="flex flex-col px-6 py-4 space-y-4 font-[inherit] tracking-widest text-lg">
+            <a href="index.html" class="text-white border border-transparent hover:border-white py-2 px-3">Home</a>
+            <a href="shop.html" class="text-white border border-transparent hover:border-white py-2 px-3">Shop</a>
+            <a href="about.html" class="text-white border border-transparent hover:border-white py-2 px-3">About</a>
+            <a href="contact.html" class="text-white border border-transparent hover:border-white py-2 px-3">Contact</a>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Centered landing content -->
+      <div class="h-screen flex flex-col items-center justify-center text-center px-4">
+        <h1 id="carousel-title" class="text-5xl md:text-7xl text-white uppercase opacity-0 animate-fade-slide-in"></h1>
+        <p id="carousel-subtitle" class="text-base md:text-lg mt-4 text-gray-300 opacity-0 animate-fade-slide-in"
+          style="animation-delay: 0.4s; animation-fill-mode: forwards; letter-spacing: 15px;"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full h-[540px] flex flex-col md:flex-row">
+    <div class="md:w-1/2 h-64 md:h-auto bg-center"
+      style="background-image: url('frakktur-icon-invert.png'); background-repeat: no-repeat; background-size: 40%;">
+    </div>
+    <div class="md:w-1/2 flex flex-col justify-center bg-white text-gray-900">
+      <div class="px-4 md:px-[80px] py-14">
+        <h2 class="font-bold mb-3 text-3xl sm:text-4xl md:text-5xl">About us</h2>
+        <p class="leading-relaxed h-[120px] text-sm sm:text-base md:text-base w-full">
+          We are a group of young graphic designers driven by a passion for creating fresh, trendy clothing brands.
+          Rooted in underground culture, we blend bold creativity with modern aesthetics to push boundaries and inspire
+          new styles.
+          Our mission is to craft unique, authentic designs that resonate with those who value originality and
+          innovation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full h-[540px] flex flex-col md:flex-row-reverse">
+    <div class="md:w-1/2 h-64 md:h-auto bg-center"
+      style="background-image: url('our-mission.png'); background-repeat: no-repeat; background-size: 35%;"></div>
+    <div class="md:w-1/2 flex flex-col justify-center bg-white text-gray-900">
+      <div class="px-4 md:px-[80px] py-14">
+        <h2 class="font-bold mb-3 text-3xl sm:text-4xl md:text-5xl">Our mission</h2>
+        <p class="leading-relaxed h-[120px] text-sm sm:text-base md:text-base w-full">
+          At Distopion, our mission is clear and unwavering: to empower you to express your true,
+          authentic self through bold and distinctive fashion. We believe that clothing is far more than
+          just fabric and stitches — it’s a powerful form of self-expression, a statement of identity, and
+          a reflection of your unique story.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full bg-gray-50 py-12">
+    <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+
+      <div class="flex flex-col items-center gap-3">
+        <img src="icons/quality.png" alt="Premium Quality" class="w-10 h-10">
+        <span class="font-medium text-xl text-black">Premium Quality</span>
+      </div>
+
+      <div class="flex flex-col items-center gap-3">
+        <img src="icons/international-delivery.png" alt="Worldwide Shipping" class="w-10 h-10">
+        <span class="font-medium text-xl text-black">Worldwide Shipping</span>
+      </div>
+
+      <div class="flex flex-col items-center gap-3">
+        <img src="icons/group.png" alt="Human Support" class="w-10 h-10">
+        <span class="font-medium text-xl text-black">Human Support</span>
+      </div>
+
+      <div class="flex flex-col items-center gap-3">
+        <img src="icons/globe-grid.png" alt="100% Secure Checkout" class="w-10 h-10">
+        <span class="font-medium text-xl text-black">100% Secure Checkout</span>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="bg-white text-black py-16 font-sans">
+    <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-sm">
+
+      <div>
+        <h3 class="font-semibold text-base mb-4">Information</h3>
+        <ul class="space-y-2">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Shipping & Delivery</a></li>
+          <li><a href="#">Returns</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-base mb-4">Shop</h3>
+        <ul class="space-y-2">
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">Tops</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-base mb-4">Legal</h3>
+        <ul class="space-y-2">
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-base mb-4">Contact</h3>
+        <p class="mb-2">Contact Support: <span class="font-semibold">help@frakktur.com</span></p>
+        <p>Speak to the owner: <span class="font-semibold">@frakktur.official</span> <span
+            class="italic">(Instagram)</span></p>
+      </div>
+
+    </div>
+
+    <!-- Logo Image Below Footer -->
+    <div class="mt-[100px] flex justify-center">
+      <img src="frakktur-logo.png" alt="Frakktur Logo"
+        class="w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] xl:w-[700px] max-w-full h-auto">
+    </div>
+
+    <div class="mt-25 px-4 max-w-[1400px] mx-auto flex flex-col items-center text-center">
+      <div class="w-full max-w-[700px]">
+        <h2 class="text-lg sm:text-xl font-medium mb-5">
+          Sign up to our <span><b>Newsletter</span></b> for latest news, offers and updates.
+        </h2>
+        <form class="flex items-center border border-black rounded-full overflow-hidden w-full">
+          <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-2 text-black outline-none" />
+          <button type="submit"
+            class="text-black px-5 py-3 transition bg-transparent hover:bg-black group cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 transition-colors duration-200 group-hover:text-white" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="mt-16 h-[70px] flex flex-col items-center justify-center text-center text-xs text-gray-500 px-4">
+      <p>© 2025, Distopion | All Rights Reserved.</p>
+      <p class="mt-1">Operated by <a href="https://www.instagram.com/denysovski/" target="_blank">@Denysovski</a></p>
+    </div>
+
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuButton.addEventListener('click', () => {
+      const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', !expanded);
+
+      if (expanded) {
+        mobileMenu.classList.remove('max-h-[500px]', 'opacity-100');
+        mobileMenu.classList.add('max-h-0', 'opacity-0');
+      } else {
+        mobileMenu.classList.remove('max-h-0', 'opacity-0');
+        mobileMenu.classList.add('max-h-[500px]', 'opacity-100');
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) {
+        mobileMenu.classList.remove('max-h-[500px]', 'opacity-100');
+        mobileMenu.classList.add('max-h-0', 'opacity-0');
+        menuButton.setAttribute('aria-expanded', false);
+      }
+    });
+
+    // Carousel slogans per slide
+    const backgrounds = document.querySelectorAll('.landing-bg');
+    const indicators = document.querySelectorAll('#carousel-indicators button');
+    const titleEl = document.getElementById('carousel-title');
+    const subtitleEl = document.getElementById('carousel-subtitle');
+
+    const slogans = [
+      { title: "Passionate About Our Work", subtitle: "You are our motivation" }
+    ];
+
+    function setTextAnimation() {
+      titleEl.textContent = slogans[currentIndex].title;
+      subtitleEl.textContent = slogans[currentIndex].subtitle;
+      titleEl.classList.add('animate-fade-slide-in');
+      subtitleEl.classList.add('animate-fade-slide-in');
+    }
+
+    window.addEventListener('load', () => {
+      if (backgrounds.length && indicators.length === backgrounds.length) {
+        backgrounds.forEach(bg => bg.classList.remove('active'));
+        indicators.forEach(dot => {
+          dot.classList.remove('opacity-100');
+          dot.classList.add('opacity-50');
+        });
+
+        currentIndex = 0;
+        setTextAnimation();
+      }
+    });
+
+  </script>
+
+</body>
+
+</html>

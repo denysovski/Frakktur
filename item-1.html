@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth h-full">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="icon" type="image/x-icon" href="frakktur-icon.png">
+    <title>FRAKKTUR</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+        body {
+            font-family: 'Bebas Neue', cursive, sans-serif;
+        }
+
+        .hover-underline-animation {
+            display: inline-block;
+            position: relative;
+        }
+
+        .hover-underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: #ffffff;
+            transition: transform 0.25s ease-out;
+        }
+
+        .hover-underline-animation:hover::after {
+            transform: scaleX(1);
+        }
+
+        .hover-underline-animation.center::after {
+            transform-origin: bottom center;
+        }
+
+        .hover-underline-animation.center:hover::after {
+            transform-origin: bottom center;
+        }
+
+        @keyframes fadeSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-slide-in {
+            animation: fadeSlideIn 0.4s ease-out forwards;
+        }
+
+        .text-size-span {
+            font-size: 9px !important;
+        }
+
+        #sizeOptions>div {
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body class="relative bg-white text-white overflow-x-hidden">
+    <!-- Landing Section -->
+    <section class="relative h-screen w-full">
+
+        <!-- Content on top -->
+        <div class="relative z-10">
+            <!-- Navigation Bar -->
+            <header role="banner" class="fixed top-0 left-0 right-0 bg-black bg-opacity-90 z-30">
+                <div class="max-w-[1800px] mx-auto flex justify-between items-center px-6 py-4">
+                    <div class="text-white uppercase tracking-widest text-3xl select-none">
+                        <a href="index.html">FRAKKTUR</a>
+                    </div>
+
+                    <nav role="navigation" aria-label="Primary navigation"
+                        class="hidden md:flex space-x-8 font-[inherit] tracking-widest text-lg">
+                        <a href="index.html"
+                            class="text-white py-1 px-3 rounded-md hover-underline-animation center">Home</a>
+                        <a href="shop.html"
+                            class="text-white py-1 px-3 rounded-md hover-underline-animation center">Shop</a>
+                        <a href="about.html"
+                            class="text-white py-1 px-3 rounded-md hover-underline-animation center">About</a>
+                        <a href="contact.html"
+                            class="text-white py-1 px-3 rounded-md hover-underline-animation center">Contact</a>
+                    </nav>
+
+                    <button type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu"
+                        id="menu-button" class="md:hidden">
+                        <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+
+                <nav id="mobile-menu"
+                    class="max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out md:hidden bg-black bg-opacity-95 backdrop-blur-md border-t border-gray-800">
+                    <div class="flex flex-col px-6 py-4 space-y-4 font-[inherit] tracking-widest text-lg">
+                        <a href="index.html"
+                            class="text-white border border-transparent hover:border-white py-2 px-3">Home</a>
+                        <a href="shop.html"
+                            class="text-white border border-transparent hover:border-white py-2 px-3">Shop</a>
+                        <a href="about.html"
+                            class="text-white border border-transparent hover:border-white py-2 px-3">About</a>
+                        <a href="contact.html"
+                            class="text-white border border-transparent hover:border-white py-2 px-3">Contact</a>
+                    </div>
+                </nav>
+            </header>
+
+            <!-- Product Page Layout -->
+            <div class="w-full bg-white py-10 px-4 mt-30">
+                <div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-2">
+
+                    <!-- Left Side (Images) -->
+                    <div class="flex flex-col lg:flex-row flex-1 gap-4 items-center lg:items-start justify-center">
+
+                        <!-- Thumbnails -->
+                        <div id="thumbnails" class="flex lg:flex-col gap-4 cursor-pointer">
+                            <img src="tshirt1.png" alt="Thumb"
+                                class="w-[100px] h-[120px] object-contain border bg-gray-100 border-black"
+                                data-src="tshirt1.png">
+                            <img src="tshirt2.png" alt="Thumb"
+                                class="w-[100px] h-[120px] object-contain border bg-gray-100" data-src="tshirt2.png">
+                            <img src="tshirt3.png" alt="Thumb"
+                                class="w-[100px] h-[120px] object-contain border bg-gray-100" data-src="tshirt3.png">
+                            <img src="tshirt4.png" alt="Thumb"
+                                class="w-[100px] h-[120px] object-contain border bg-gray-100" data-src="tshirt4.png">
+                        </div>
+
+                        <!-- Main Image -->
+                        <div
+                            class="w-full max-w-[650px] max-h-[1000px] aspect-square bg-gray-100 flex items-center justify-center">
+                            <img id="mainImage" src="tshirt1.png" alt="Main Shirt" class="object-contain w-full h-full">
+                        </div>
+                    </div>
+
+                    <!-- Right Side (Product Info) -->
+                    <div class="w-full lg:max-w-[400px] space-y-4 text-sm text-black" style="margin-left: 0;">
+                        <h1 class="text-4xl font-semibold">Structured Layer Tee</h1>
+                        <div class="text-3xl font-bold">1.137 Kč</div>
+                        <p class="text-gray-500">Tax included</p>
+
+                        <p class="text-gray-700">Soft and durable t-shirt designed with a layered structure for a modern
+                            silhouette.</p>
+
+                        <ul class="list-disc list-inside text-gray-600 text-lg">
+                            <li>100% Cotton</li>
+                            <li>Pre-shrunk</li>
+                            <li>Made in EU</li>
+                            <li>Machine washable</li>
+                        </ul>
+
+                        <!-- Color Variants -->
+                        <div class="space-y-2 text-black">
+                            <div>
+                                COLOR <span id="colorSelected" class="ml-1"></span>
+                            </div>
+                            <div id="colorOptions" class="flex gap-4">
+                                <div class="cursor-pointer text-center border border-transparent bg-gray-100"
+                                    data-color="BLACK">
+                                    <img src="tshirt1.png" class="w-16 h-16 object-cover" alt="Black">
+                                </div>
+                                <div class="cursor-pointer text-center border border-transparent bg-gray-100"
+                                    data-color="OLIVE">
+                                    <img src="tshirt4.png" class="w-16 h-16 object-cover" alt="Olive">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Size Options -->
+                        <div class="space-y-2 text-black">
+                            <div>
+                                SIZE <span id="sizeSelected" class="ml-1"></span>
+                            </div>
+                            <div id="sizeOptions" class="flex gap-3">
+                                <div
+                                    class="w-10 h-10 border border-black flex items-center justify-center cursor-pointer bg-transparent text-black">
+                                    M</div>
+                                <div
+                                    class="w-10 h-10 border border-black flex items-center justify-center cursor-pointer bg-transparent text-black">
+                                    L</div>
+                                <div
+                                    class="w-10 h-10 border border-black flex items-center justify-center cursor-pointer bg-transparent text-black">
+                                    XL</div>
+                                <div
+                                    class="w-10 h-10 border border-black flex items-center justify-center cursor-pointer bg-transparent text-black">
+                                    XXL</div>
+                            </div>
+                        </div>
+
+                        <!-- Stock + Button -->
+                        <div class="flex items-center gap-4 mt-4">
+                            <div class="text-green-600 text-sm flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current"
+                                    viewBox="0 0 24 24">
+                                    <path d="M9 16.17l-3.88-3.88L4 13.41l5 5 12-12L19.59 5z" />
+                                </svg>
+                                In stock
+                            </div>
+                        </div>
+                        <button class="bg-black text-white px-6 py-2 text-sm cursor-pointer"
+                            style="min-width: 300px;">Add to
+                            Cart</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <script>
+                // Thumbnails main image switcher
+                const thumbnails = document.querySelectorAll('#thumbnails img');
+                const mainImage = document.getElementById('mainImage');
+
+                thumbnails.forEach((thumb) => {
+                    thumb.addEventListener('click', () => {
+                        mainImage.src = thumb.dataset.src;
+                        thumbnails.forEach(t => t.classList.remove('border-black'));
+                        thumb.classList.add('border-black');
+                    });
+                });
+
+                // Color selection logic (no initial selection)
+                const colors = document.querySelectorAll('#colorOptions > div');
+                const colorSelectedText = document.getElementById('colorSelected');
+
+                colors.forEach(color => {
+                    color.addEventListener('click', () => {
+                        const selected = color.classList.contains('border-black');
+                        colors.forEach(c => {
+                            c.classList.remove('border-black');
+                            c.classList.add('border-transparent');
+                            c.classList.add('bg-gray-100');
+                        });
+                        if (!selected) {
+                            color.classList.add('border-black');
+                            color.classList.remove('border-transparent');
+                            color.classList.remove('bg-gray-100');
+                            colorSelectedText.textContent = ' | ' + color.dataset.color.toUpperCase();
+                        } else {
+                            colorSelectedText.textContent = '';
+                        }
+                    });
+                });
+
+                // Size selection logic (toggle selection)
+                const sizes = document.querySelectorAll('#sizeOptions > div');
+                const sizeSelectedText = document.getElementById('sizeSelected');
+
+                sizes.forEach(size => {
+                    size.addEventListener('click', () => {
+                        const isSelected = size.style.backgroundColor === 'black';
+                        sizes.forEach(s => {
+                            s.style.backgroundColor = 'transparent';
+                            s.style.color = 'black';
+                        });
+                        if (!isSelected) {
+                            size.style.backgroundColor = 'black';
+                            size.style.color = 'white';
+                            sizeSelectedText.textContent = ' | ' + size.textContent;
+                        } else {
+                            sizeSelectedText.textContent = '';
+                        }
+                    });
+                });
+            </script>
+
+            <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+                rel="stylesheet">
+
+            <section class="w-full bg-gray-50 py-12">
+                <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+
+                    <div class="flex flex-col items-center gap-3">
+                        <img src="icons/quality.png" alt="Premium Quality" class="w-10 h-10">
+                        <span class="font-medium text-xl text-black">Premium Quality</span>
+                    </div>
+
+                    <div class="flex flex-col items-center gap-3">
+                        <img src="icons/international-delivery.png" alt="Worldwide Shipping" class="w-10 h-10">
+                        <span class="font-medium text-xl text-black">Worldwide Shipping</span>
+                    </div>
+
+                    <div class="flex flex-col items-center gap-3">
+                        <img src="icons/group.png" alt="Human Support" class="w-10 h-10">
+                        <span class="font-medium text-xl text-black">Human Support</span>
+                    </div>
+
+                    <div class="flex flex-col items-center gap-3">
+                        <img src="icons/globe-grid.png" alt="100% Secure Checkout" class="w-10 h-10">
+                        <span class="font-medium text-xl text-black">100% Secure Checkout</span>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="bg-white text-black py-16 font-sans">
+                <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-sm">
+
+                    <div>
+                        <h3 class="font-semibold text-base mb-4">Information</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Shipping & Delivery</a></li>
+                            <li><a href="#">Returns</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-base mb-4">Shop</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#">Shop</a></li>
+                            <li><a href="#">Tops</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-base mb-4">Legal</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Shipping Policy</a></li>
+                            <li><a href="#">Refund Policy</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-base mb-4">Contact</h3>
+                        <p class="mb-2">Contact Support: <span class="font-semibold">help@frakktur.com</span></p>
+                        <p>Speak to the owner: <span class="font-semibold">@frakktur.official</span> <span
+                                class="italic">(Instagram)</span></p>
+                    </div>
+
+                </div>
+
+                <!-- Logo Image Below Footer -->
+                <div class="mt-[100px] flex justify-center">
+                    <img src="frakktur-logo.png" alt="Frakktur Logo"
+                        class="w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] xl:w-[700px] max-w-full h-auto">
+                </div>
+
+                <div class="mt-25 px-4 max-w-[1400px] mx-auto flex flex-col items-center text-center">
+                    <div class="w-full max-w-[700px]">
+                        <h2 class="text-lg sm:text-xl font-medium mb-5">
+                            Sign up to our <span><b>Newsletter</span></b> for latest news, offers and updates.
+                        </h2>
+                        <form class="flex items-center border border-black rounded-full overflow-hidden w-full">
+                            <input type="email" placeholder="Enter your email"
+                                class="flex-1 px-4 py-2 text-black outline-none" />
+                            <button type="submit"
+                                class="text-black px-5 py-3 transition bg-transparent hover:bg-black group cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5 transition-colors duration-200 group-hover:text-white" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Copyright Section -->
+                <div
+                    class="mt-16 h-[70px] flex flex-col items-center justify-center text-center text-xs text-gray-500 px-4">
+                    <p>© 2025, Distopion | All Rights Reserved.</p>
+                    <p class="mt-1">Operated by <a href="https://www.instagram.com/denysovski/"
+                            target="_blank">@Denysovski</a></p>
+                </div>
+
+            </footer>
+
+            <!-- Main Content Section -->
+            <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+            <script>
+                // Mobile Menu Toggle
+                const menuButton = document.getElementById('menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
+
+                menuButton.addEventListener('click', () => {
+                    const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+                    menuButton.setAttribute('aria-expanded', !expanded);
+
+                    if (expanded) {
+                        mobileMenu.classList.remove('max-h-[500px]', 'opacity-100');
+                        mobileMenu.classList.add('max-h-0', 'opacity-0');
+                    } else {
+                        mobileMenu.classList.remove('max-h-0', 'opacity-0');
+                        mobileMenu.classList.add('max-h-[500px]', 'opacity-100');
+                    }
+                });
+
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth >= 768) {
+                        mobileMenu.classList.remove('max-h-[500px]', 'opacity-100');
+                        mobileMenu.classList.add('max-h-0', 'opacity-0');
+                        menuButton.setAttribute('aria-expanded', false);
+                    }
+                });
+            </script>
+
+</body>
+
+</html>
